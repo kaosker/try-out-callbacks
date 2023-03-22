@@ -27,12 +27,27 @@ console.log(result4); // true
 
 *******************************************************************************/
 
-let exactly = function() {
+let exactly = function(array, n, cb) {
+    let count = 0;
+    for (let i = 0; i < array.length; i++) {
+        let el = array[i];
 
+        if (cb(el) === true) {
+            count++;
+            console.log(count);
+        }
+    }
+
+    if (count === n) {
+        return true;
+    }
+    return false;
 };
 
-
-
+let result2 = exactly([18, 5, 32, 7, 100], 2, function (n) { debugger
+    return n % 2 === 0;
+});
+console.log(result2); // false
 
 
 

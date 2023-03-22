@@ -10,13 +10,35 @@ console.log(minValueCallback([64, 25, 49, 9, 100], Math.sqrt));  // 3
 
 *******************************************************************************/
 
-let minValueCallback = function() {
+let minValueCallback = function(array, cb) {
+    let lowest = array[0];
 
+    if (typeof cb == "function") {
+        for (let i = 1; i < array.length; i++) {
+            let el = array[i];
+
+            if (el < lowest) {
+                lowest = el;
+            }
+
+        }
+        return cb(lowest);
+    } else {
+        for (let i = 1; i < array.length; i++) {
+            let el = array[i];
+            if (el < lowest) {
+                lowest = el;
+            }
+        }
+    }
+    return lowest;
 };
 
 
 
 
+console.log(minValueCallback([64, 25, 49, 9, 100]));             // 9
+console.log(minValueCallback([64, 25, 49, 9, 100], Math.sqrt));  // 3
 
 
 /*****************DO NOT MODIFY ANYTHING UNDER THIS  LINE**********************/

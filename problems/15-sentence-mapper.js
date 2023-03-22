@@ -25,13 +25,23 @@ let result2 = sentenceMapper("this is pretty cool right", removeVowels);
 console.log(result2); // 'ths s prtty cl rght'
 *******************************************************************************/
 
-let sentenceMapper = function() {
+let sentenceMapper = function(string, cb) {
+    let word = string.split(" ");
+    let newStr = [];
 
+    for (let i = 0; i < word.length; i++) {
+        let el = word[i];
+        newStr.push(cb(el));
+    }
+    return newStr.join(" ");
 };
 
 
 
-
+let result1 = sentenceMapper("what is the answer?", function(word) {
+    return word.toUpperCase() + "!";
+});
+console.log(result1); // 'WHAT! IS! THE! ANSWER?!'
 
 
 /*****************DO NOT MODIFY ANYTHING UNDER THIS  LINE**********************/

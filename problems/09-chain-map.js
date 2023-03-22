@@ -30,16 +30,40 @@ console.log(chainMap(4, half, square));         // 4
 *******************************************************************************/
 
 let chainMap = function(value, ...cb) {
-    let argLength = arguments.length;
 
-    for (let i = 0; i < argLength; i++) {
-        value = cb[i](value);
+    /*
+    let result = value;
+    for (let callback of cb) {
+        result = callback(result);
     }
-    return value;
+    return result; */
+
+    let result = value
+
+    cb.forEach(function(callback) {
+        result = callback(result);
+    });
+    return result;
 };
 
 
+let add5 = function(n) {
+    return n + 5;
+};
 
+let half = function(n) {
+    return n / 2;
+};
+
+let square = function(n) {
+    return n * n;
+};
+
+console.log(chainMap(25, add5));                // 30
+console.log(chainMap(25, add5, half));          // 15
+console.log(chainMap(25, add5, half, square));  // 225
+console.log(chainMap(4, square, half));         // 8
+console.log(chainMap(4, half, square));         // 4
 
 
 
